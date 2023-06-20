@@ -1,5 +1,13 @@
+const { StatusCodes } = require('http-status-codes');
+const { customAPIError } = require('../errors');
+
 const errorHandler = (err, req, res, next) => {
-  res.status(500).json({ error: err });
+  if (err instanceof customAPIError) {
+    return res.status(err.statusCode).json({
+      msg: err.message,
+    });
+  }
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: err.message });
 };
 
 module.exports = errorHandler;
