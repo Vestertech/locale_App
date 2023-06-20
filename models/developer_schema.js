@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const { generateApiKey } = require('generate-api-key');
 
 const Schema = mongoose.Schema;
 
@@ -37,6 +39,15 @@ const DeveloperSchema = new Schema({
     date: { type: Date, default: new Date().toISOString() },
     count: { type: Number, default: 0 },
   },
+});
+
+DeveloperSchema.pre('save', async function (next) {
+  const salt = await bcrypt.genSalt(10);
+
+  this.password = await bcrypt.hash(this.password, salt);
+  this.apiKey = await bcrypt.hash(this.apiKey, salt);
+
+  next();
 });
 
 module.exports = mongoose.model('Developer', DeveloperSchema);

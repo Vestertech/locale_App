@@ -9,21 +9,16 @@ const createUser = asyncWrapper(async (req, res) => {
   const { name, email, password } = data;
   const apiKey = generateApiKey({ method: 'uuidv4' });
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-  const hashedApiKey = await bcrypt.hash(apiKey, salt);
-
   const user = new developer({
     name,
     email,
-    password: hashedPassword,
-    apiKey: hashedApiKey,
+    password,
+    apiKey,
   });
 
   await user.save();
-  console.log(apiKey);
 
-  res.status(200).json({});
+  res.status(200).json({ apiKey });
 });
 
 module.exports = { createUser };
