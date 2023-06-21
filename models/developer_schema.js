@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const { generateApiKey } = require('generate-api-key');
+const { badRequestError } = require('../errors');
 
 const Schema = mongoose.Schema;
 
@@ -27,7 +27,11 @@ const DeveloperSchema = new Schema({
   apiKey: {
     type: String,
     required: true,
-    default: '',
+    //select: false, // Excludes the apikey field by default when querying
+  },
+  maskedKey: {
+    type: String,
+    required: true,
   },
   password: {
     type: String,
@@ -41,13 +45,30 @@ const DeveloperSchema = new Schema({
   },
 });
 
+// Hash the password and APIKey before saving to the database
 DeveloperSchema.pre('save', async function (next) {
-  const salt = await bcrypt.genSalt(10);
+  if (!this.isModified('apiKey')) {
+    return next();
+  }
 
-  this.password = await bcrypt.hash(this.password, salt);
-  this.apiKey = await bcrypt.hash(this.apiKey, salt);
+  try {
+    const salt = await bcrypt.genSalt(10);
 
-  next();
+    this.password = await bcrypt.hash(this.password, salt);
+    this.apiKey = await bcrypt.hash(this.apiKey, salt);
+    next();
+  } catch (error) {
+    return next(error);
+  }
 });
+
+DeveloperSchema.methods.compareAPIKey = async function (developerAPIKey) {
+  try {
+    const isMatch = await bcrypt.compare(developerAPIKey, this.apiKey);
+    return isMatch;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 module.exports = mongoose.model('Developer', DeveloperSchema);
