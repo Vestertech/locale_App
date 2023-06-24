@@ -1,12 +1,12 @@
-const mongoose = required('mongoose');
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Schema for Region
 const RegionSchema = new Schema({
   name: {
     type: String,
-    trim: true,
     required: true,
+    trim: true,
   },
   states: [
     {
@@ -14,6 +14,24 @@ const RegionSchema = new Schema({
       ref: 'State',
     },
   ],
+  metadata: {
+    coordinates: {
+      type: {
+        latitude: {
+          type: Number,
+        },
+        longitude: {
+          type: Number,
+        },
+      },
+    },
+    size: {
+      type: mongoose.Schema.Types.Mixed,
+    },
+    population: {
+      type: mongoose.Schema.Types.Mixed,
+    },
+  },
 });
 
 module.exports = mongoose.model('Region', RegionSchema);

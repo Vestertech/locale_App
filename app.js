@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/v1/developer', developerRoute);
-app.use('/api/v1/location', locationRoute);
+app.use('/api/v1/location/', locationRoute);
 app.use(notFound);
 app.use(errorHandler);
 
