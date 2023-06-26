@@ -2,20 +2,20 @@ const mongoose = require('mongoose');
 
 const LgaSchema = require('./lga');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 // Schema for States
-const StateSchema = new Schema({
-  name: {
+const StateSchema = Schema({
+  stateName: {
     type: String,
     required: true,
     trim: true,
   },
   region: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Region',
   },
-  metadata: {
+  state_metadata: {
     capital: {
       type: String,
     },
@@ -33,7 +33,7 @@ const StateSchema = new Schema({
       type: Number,
     },
   },
-  lgas: [LgaSchema],
+  lgas: [],
 });
 
 module.exports = mongoose.model('State', StateSchema);

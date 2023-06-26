@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 // Schema for Region
-const RegionSchema = new Schema({
-  name: {
+const RegionSchema = Schema({
+  regionName: {
     type: String,
     required: true,
     trim: true,
   },
   states: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'State',
     },
   ],
