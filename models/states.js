@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const LgaSchema = require('./lga');
-
 const { Schema } = mongoose;
 
 // Schema for States
@@ -33,7 +31,10 @@ const StateSchema = Schema({
       type: Number,
     },
   },
-  lgas: [],
+  lgas: {
+    type: Schema.Types.ObjectId,
+    ref: 'Lga',
+  },
 });
 
 module.exports = mongoose.model('State', StateSchema);
