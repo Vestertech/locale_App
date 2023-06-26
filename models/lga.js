@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Schema for Local Government Area
-const LgaSchema = new Schema({
-  name: {
-    type: String,
+const LgaSchema = Schema({
+  lgaName: {
+    type: [lgaName],
     required: true,
     trim: true,
   },
