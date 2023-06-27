@@ -5,13 +5,13 @@ const Schema = mongoose.Schema;
 // Schema for Local Government Area
 const LgaSchema = Schema({
   lgaName: {
-    type: [lgaName],
+    type: [],
     required: true,
     trim: true,
   },
-  metadata: {
-    type: mongoose.Schema.Types.Mixed,
-  },
+  // metadata: {
+  //   type: mongoose.Schema.Types.Mixed,
+  // },
 });
 
-module.exports = mongoose.model('Lga', LgaSchema);
+//module.exports = mongoose.model('Lga', LgaSchema);
