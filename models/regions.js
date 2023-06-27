@@ -6,6 +6,7 @@ const RegionSchema = Schema({
   regionName: {
     type: String,
     required: true,
+    unique: true,
     trim: true,
   },
   states: [

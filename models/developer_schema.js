@@ -62,6 +62,7 @@ DeveloperSchema.pre('save', async function (next) {
   }
 });
 
+// Create a mongoose method to compare user entered APIkey(un-hashed) against the APIkey in the DB
 DeveloperSchema.methods.compareAPIKey = async function (developerAPIKey) {
   try {
     const isMatch = await bcrypt.compare(developerAPIKey, this.apiKey);

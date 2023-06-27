@@ -31,9 +31,14 @@ const StateSchema = Schema({
       type: Number,
     },
   },
-  lgas: {
-    type: Schema.Types.ObjectId,
-    ref: 'Lga',
+  LGA: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  numberOfLGAs: {
+    type: Number,
   },
 });
 
