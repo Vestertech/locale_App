@@ -26,12 +26,12 @@ const RegionSchema = Schema({
         },
       },
     },
-    size: {
-      type: mongoose.Schema.Types.Mixed,
-    },
-    population: {
-      type: mongoose.Schema.Types.Mixed,
-    },
+  },
+  size: {
+    type: mongoose.Schema.Types.Mixed,
+  },
+  population: {
+    type: mongoose.Schema.Types.Mixed,
   },
 });
 

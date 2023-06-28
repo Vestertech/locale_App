@@ -27,9 +27,9 @@ const StateSchema = Schema({
         },
       },
     },
-    population: {
-      type: Number,
-    },
+  },
+  population: {
+    type: Number,
   },
   LGA: [
     {
