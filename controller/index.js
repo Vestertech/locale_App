@@ -5,9 +5,10 @@ const {
   createStatesInSouthEasternRegion,
 } = require('./create_states');
 
-const { getAllStates } = require('./locate-states');
+const { getAllStates } = require('./get_all_states');
 
 const { createRegion } = require('./create_regions');
+const { getAllRegions } = require('./get_all_regions');
 
 module.exports = {
   createStatesInNorthWestRegion,
@@ -16,4 +17,5 @@ module.exports = {
   createStatesInNorthEasternRegion,
   createStatesInSouthEasternRegion,
   getAllStates,
+  getAllRegions,
 };
