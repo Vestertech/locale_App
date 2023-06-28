@@ -1,4 +1,3 @@
-const { populate } = require('../models/developer_schema');
 const StateModel = require('../models/states');
 
 const getAllStates = async (req, res) => {
