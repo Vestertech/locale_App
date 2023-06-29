@@ -2,6 +2,15 @@ const { StatusCodes } = require('http-status-codes');
 const { customAPIError } = require('../errors');
 
 const errorHandler = (err, req, res, next) => {
+  // Handle errors from DB unique fields
+  if (err.code && err.code === 11000) {
+    let customErrorMsg = `Duplicate value entered for ${Object.keys(
+      err.keyValue
+    )} field, please choose another value`;
+
+    return res.status(400).json({ customErrorMsg });
+  }
+
   if (err instanceof customAPIError) {
     return res.status(err.statusCode).json({
       msg: err.message,
