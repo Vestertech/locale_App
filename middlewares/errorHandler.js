@@ -33,7 +33,7 @@ const errorHandler = (err, req, res, next) => {
   }
   return res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
-    .send(`Something went wrong, please try again later`);
+    .json({ error: err.message });
 };
 
 module.exports = errorHandler;
