@@ -1,29 +1,26 @@
 // Import models
 const StateModel = require('../models/states');
 const RegionModel = require('../models/regions');
+const asyncWrapper = require('../middlewares/asyncWrapper');
 
-const createRegion = async (req, res) => {
-  try {
-    // create a new instance of the region model
-    const newRegion = new RegionModel({
-      ...req.body,
-    });
+const createRegion = asyncWrapper(async (req, res) => {
+  // create a new instance of the region model
+  const newRegion = new RegionModel({
+    ...req.body,
+  });
 
-    // create a new instance of the state model
-    const newState = new StateModel({
-      ...req.body,
-    });
+  // create a new instance of the state model
+  const newState = new StateModel({
+    ...req.body,
+  });
 
-    // Becaue its a two way transaction,
-    // push the newly created state ID to the region created
-    newRegion.states.push(newState._id);
-    await newRegion.save();
+  // Becaue its a two way transaction,
+  // push the newly created stateID to the statefield in the region created
+  newRegion.states.push(newState._id);
+  await newRegion.save();
 
-    res.status(200).json({ msg: 'Success' });
-  } catch (error) {
-    return res.status(500).json({ error });
-  }
-};
+  res.status(200).json({ msg: 'Success' });
+});
 
 module.exports = {
   createRegion,

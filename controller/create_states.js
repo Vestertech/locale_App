@@ -1,124 +1,109 @@
 // Import models
 const StateModel = require('../models/states');
 const RegionModel = require('../models/regions');
+const asyncWrapper = require('../middlewares/asyncWrapper');
 
-const createStatesInNorthWestRegion = async (req, res) => {
-  try {
-    const region = await RegionModel.findOne({
-      _id: '649a30ca317b0c6948ffc9ec',
-    });
+const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
+  const region = await RegionModel.findOne({
+    _id: '649a30ca317b0c6948ffc9ec',
+  });
 
-    if (!region || region.length === 0) {
-      return res.status(404).json({ msg: 'Not Found' });
-    }
-
-    const { LGA } = req.body;
-
-    const newState = new StateModel({
-      ...req.body,
-      numberOfLGAs: LGA.length,
-      region: region._id,
-    });
-
-    region.states.push(newState._id);
-    await region.save();
-
-    await newState.save();
-    res.status(200).json({ message: 'State created successfully' });
-  } catch (error) {
-    return res.status(500).json({ msg: error.message });
+  if (!region || region.length === 0) {
+    return res.status(404).json({ msg: 'Not Found' });
   }
-};
 
-const createStatesInNorthCentralRegion = async (req, res) => {
-  try {
-    const region = await RegionModel.findOne({
-      _id: '649a3953c9346a8e6e325d51',
-    });
+  const { LGA } = req.body;
 
-    if (!region || region.length === 0) {
-      return res.status(404).json({ msg: 'Not Found' });
-    }
+  const newState = new StateModel({
+    ...req.body,
+    numberOfLGAs: LGA.length,
+    region: region._id,
+  });
 
-    const { LGA } = req.body;
+  region.states.push(newState._id);
+  await region.save();
 
-    const newState = new StateModel({
-      ...req.body,
-      numberOfLGAs: LGA.length,
-      region: region._id,
-    });
+  await newState.save();
+  res.status(200).json({ message: 'State created successfully' });
+});
 
-    region.states.push(newState._id);
-    await region.save();
+const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
+  const region = await RegionModel.findOne({
+    _id: '649a3953c9346a8e6e325d51',
+  });
 
-    await newState.save();
-    res
-      .status(200)
-      .json({ message: `${newState.stateName} created sucessfully` });
-  } catch (error) {
-    return res.status(500).json({ msg: error.message });
+  if (!region || region.length === 0) {
+    return res.status(404).json({ msg: 'Not Found' });
   }
-};
 
-const createStatesInNorthEasternRegion = async (req, res) => {
-  try {
-    const region = await RegionModel.findOne({
-      _id: '649a40ee6a4914997828c149',
-    });
+  const { LGA } = req.body;
 
-    if (!region || region.length === 0) {
-      return res.status(404).json({ msg: 'Not Found' });
-    }
+  const newState = new StateModel({
+    ...req.body,
+    numberOfLGAs: LGA.length,
+    region: region._id,
+  });
 
-    const { LGA } = req.body;
+  region.states.push(newState._id);
+  await region.save();
 
-    const newState = new StateModel({
-      ...req.body,
-      numberOfLGAs: LGA.length,
-      region: region._id,
-    });
+  await newState.save();
+  res
+    .status(200)
+    .json({ message: `${newState.stateName} created sucessfully` });
+});
 
-    region.states.push(newState._id);
-    await region.save();
+const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
+  const region = await RegionModel.findOne({
+    _id: '649a40ee6a4914997828c149',
+  });
 
-    await newState.save();
-    res
-      .status(200)
-      .json({ message: `${newState.stateName} created sucessfully` });
-  } catch (error) {
-    return res.status(500).json({ msg: error.message });
+  if (!region || region.length === 0) {
+    return res.status(404).json({ msg: 'Not Found' });
   }
-};
 
-const createStatesInSouthEasternRegion = async (req, res) => {
-  try {
-    const region = await RegionModel.findOne({
-      _id: '649a4497e559e2f3f9e6dd24',
-    });
+  const { LGA } = req.body;
 
-    if (!region || region.length === 0) {
-      return res.status(404).json({ msg: 'Not Found' });
-    }
+  const newState = new StateModel({
+    ...req.body,
+    numberOfLGAs: LGA.length,
+    region: region._id,
+  });
 
-    const { LGA } = req.body;
+  region.states.push(newState._id);
+  await region.save();
 
-    const newState = new StateModel({
-      ...req.body,
-      numberOfLGAs: LGA.length,
-      region: region._id,
-    });
+  await newState.save();
+  res
+    .status(200)
+    .json({ message: `${newState.stateName} created sucessfully` });
+});
 
-    region.states.push(newState._id);
-    await region.save();
+const createStatesInSouthEasternRegion = asyncWrapper(async (req, res) => {
+  const region = await RegionModel.findOne({
+    _id: '649a4497e559e2f3f9e6dd24',
+  });
 
-    await newState.save();
-    res
-      .status(200)
-      .json({ message: `${newState.stateName} created sucessfully` });
-  } catch (error) {
-    return res.status(500).json({ msg: error.message });
+  if (!region || region.length === 0) {
+    return res.status(404).json({ msg: 'Not Found' });
   }
-};
+
+  const { LGA } = req.body;
+
+  const newState = new StateModel({
+    ...req.body,
+    numberOfLGAs: LGA.length,
+    region: region._id,
+  });
+
+  region.states.push(newState._id);
+  await region.save();
+
+  await newState.save();
+  res
+    .status(200)
+    .json({ message: `${newState.stateName} created sucessfully` });
+});
 module.exports = {
   createStatesInNorthWestRegion,
   createStatesInNorthCentralRegion,
