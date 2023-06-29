@@ -87,7 +87,7 @@ const getAllStates = async (req, res) => {
     res.status(200).json({ states, nbHits: states.length });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    next(error);
   }
 };
 

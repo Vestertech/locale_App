@@ -2,6 +2,7 @@
 const StateModel = require('../models/states');
 const RegionModel = require('../models/regions');
 const asyncWrapper = require('../middlewares/asyncWrapper');
+const { badRequestError } = require('../errors');
 
 const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findOne({
@@ -9,7 +10,7 @@ const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
   });
 
   if (!region || region.length === 0) {
-    return res.status(404).json({ msg: 'Not Found' });
+    throw new badRequestError('Region not found');
   }
 
   const { LGA } = req.body;
@@ -24,7 +25,9 @@ const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
   await region.save();
 
   await newState.save();
-  res.status(200).json({ message: 'State created successfully' });
+  res
+    .status(200)
+    .json({ message: `${newState.stateName} created sucessfully` });
 });
 
 const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
@@ -33,7 +36,7 @@ const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
   });
 
   if (!region || region.length === 0) {
-    return res.status(404).json({ msg: 'Not Found' });
+    throw new badRequestError('Region not found');
   }
 
   const { LGA } = req.body;
@@ -59,7 +62,7 @@ const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
   });
 
   if (!region || region.length === 0) {
-    return res.status(404).json({ msg: 'Not Found' });
+    throw new badRequestError('Region not found');
   }
 
   const { LGA } = req.body;
@@ -85,7 +88,7 @@ const createStatesInSouthEasternRegion = asyncWrapper(async (req, res) => {
   });
 
   if (!region || region.length === 0) {
-    return res.status(404).json({ msg: 'Not Found' });
+    throw new badRequestError('Region not found');
   }
 
   const { LGA } = req.body;

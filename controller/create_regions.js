@@ -10,13 +10,15 @@ const createRegion = asyncWrapper(async (req, res) => {
   });
 
   // create a new instance of the state model
-  const newState = new StateModel({
-    ...req.body,
-  });
+  // const newState = new StateModel({
+  //   ...req.body,
+  // });
 
   // Becaue its a two way transaction,
   // push the newly created stateID to the statefield in the region created
-  newRegion.states.push(newState._id);
+
+  //Fixed issue with multiple states being created in the same transaction
+  // newRegion.states.push(newState._id);
   await newRegion.save();
 
   res.status(200).json({ msg: 'Success' });

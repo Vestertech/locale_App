@@ -9,6 +9,10 @@ const createUser = asyncWrapper(async (req, res) => {
   const { body: data } = req;
   const { name, email, password } = data;
 
+  if (!name || !email || !password) {
+    throw new badRequestError('Please, all fields are required');
+  }
+
   // Check if email is already registered
   const existingDeveloper = await developer.findOne({ email });
   if (existingDeveloper) {

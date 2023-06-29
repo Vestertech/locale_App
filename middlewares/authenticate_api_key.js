@@ -30,7 +30,7 @@ const authenticateKey = asyncWrapper(async (req, res, next) => {
     );
   }
 
-  req.user = apiKey;
+  // req.user = apiKey;
 
   // IMPLEMENT API USAGE LIMIT
   // If API key matches
