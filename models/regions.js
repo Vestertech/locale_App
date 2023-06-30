@@ -9,12 +9,6 @@ const RegionSchema = Schema({
     unique: true,
     trim: true,
   },
-  states: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'State',
-    },
-  ],
   metadata: {
     coordinates: {
       type: {
@@ -33,6 +27,16 @@ const RegionSchema = Schema({
   population: {
     type: mongoose.Schema.Types.Mixed,
   },
+});
+
+// In order for one to be able to populate a list of all
+// states in a region, use the virtual function
+RegionSchema.virtual('states', {
+  ref: 'State',
+  localField: '_id',
+  foreignField: 'region',
+  toJSON: { virtuals: true }, //So `res.json()` and other `JSON.stringify()` functions include virtuals
+  toObject: { virtuals: true }, //So `console.log()` and other functions that use `toObject()` include virtuals
 });
 
 module.exports = mongoose.model('Region', RegionSchema);
