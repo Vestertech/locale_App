@@ -10,7 +10,10 @@ const getRegion = asyncWrapper(async (req, res) => {
     throw new notFoundError(`No item found with id ${regionId}`);
   }
 
-  const region = await RegionModel.findOne({ _id: regionId }).select('-states');
+  const region = await RegionModel.findOne({ _id: regionId }).populate({
+    path: 'states',
+    select: 'stateName region',
+  });
 
   res.status(200).json({ region });
 });
