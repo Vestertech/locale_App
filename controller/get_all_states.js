@@ -1,8 +1,24 @@
 const StateModel = require('../models/states');
 const asyncWrapper = require('../middlewares/asyncWrapper');
 
+const Cache = require('../config/redis');
+
 const getAllStates = asyncWrapper(async (req, res) => {
   const { numericFilters, sort, stateName, LGA, fields } = req.query;
+
+  // Cache layer for region
+  // const cacheKey = `states_${numericFilters}_${sort}_${stateName}_${LGA}_${fields}`;
+
+  // const cacheState = await Cache.redis.get(cacheKey);
+
+  // if (cacheState) {
+  //   // cache hit
+  //   return res.status(200).json({
+  //     states: JSON.parse(cacheState),
+  //   });
+  // }
+  const cacheKey = req.originalUrl;
+
   const queryObject = {};
 
   if (stateName) {
@@ -79,7 +95,10 @@ const getAllStates = asyncWrapper(async (req, res) => {
 
   const states = await result;
 
-  res.status(200).json({ states, nbHits: states.length });
+  console.log('Hit DB');
+  Cache.redis.set(cacheKey, JSON.stringify(states));
+
+  res.status(200).json({ data: states, nbHits: states.length });
 });
 
 module.exports = {

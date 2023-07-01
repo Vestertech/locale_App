@@ -1,8 +1,14 @@
 const RegionModel = require('../models/regions');
 const asyncWrapper = require('../middlewares/asyncWrapper');
 
+const Cache = require('../config/redis');
+
 const getAllRegions = asyncWrapper(async (req, res) => {
   const { fields } = req.query;
+
+  // Get cacheKey from the URL, so as to have a synchronised cachekey
+  const cacheKey = req.originalUrl;
+
   const queryObject = {};
 
   let result = RegionModel.find(queryObject);
@@ -22,7 +28,10 @@ const getAllRegions = asyncWrapper(async (req, res) => {
 
   const regions = await result;
 
-  res.status(200).json({ regions });
+  console.log('Hit DB');
+  Cache.redis.set(cacheKey, JSON.stringify(regions));
+
+  res.status(200).json({ data: regions });
 });
 
 module.exports = {
