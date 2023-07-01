@@ -8,6 +8,7 @@ const StateSchema = Schema({
     type: String,
     required: true,
     trim: true,
+    unique: true,
   },
   region: {
     type: Schema.Types.ObjectId,

@@ -21,9 +21,6 @@ const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
     region: region._id,
   });
 
-  region.states.push(newState._id);
-  await region.save();
-
   await newState.save();
   res
     .status(200)
@@ -47,9 +44,6 @@ const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
     region: region._id,
   });
 
-  region.states.push(newState._id);
-  await region.save();
-
   await newState.save();
   res
     .status(200)
@@ -72,9 +66,6 @@ const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
     numberOfLGAs: LGA.length,
     region: region._id,
   });
-
-  region.states.push(newState._id);
-  await region.save();
 
   await newState.save();
   res

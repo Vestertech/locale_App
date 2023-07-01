@@ -32,7 +32,7 @@ const getAllStates = asyncWrapper(async (req, res) => {
       (match) => `-${operatorMap[match]}-`
     );
     let statePopulationField = await StateModel.find({});
-    let getPopulation = statePopulationField.forEach((pop) => {
+    statePopulationField.forEach((pop) => {
       return pop.state_metadata;
     });
 
@@ -59,11 +59,6 @@ const getAllStates = asyncWrapper(async (req, res) => {
     // result.state_metadata = result.sort(sortList);
     result = result.sort(sortList);
   }
-  //  else {
-  //   result.state_metadata['population'] = result.sort(
-  //     `state_metadata[population]`
-  //   );
-  // }
 
   // Return specific fields in the result
   if (fields) {

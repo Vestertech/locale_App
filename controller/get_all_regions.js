@@ -10,9 +10,6 @@ const getAllRegions = asyncWrapper(async (req, res) => {
   if (fields) {
     const fildsList = fields.split(',').join(' ');
     result = result.select(fildsList);
-  } else {
-    // Exclude the states field except explicitly specified
-    result = result.select('-states');
   }
 
   // Pagination
