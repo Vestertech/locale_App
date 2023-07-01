@@ -1,6 +1,5 @@
 const express = require('express');
 
-const authenticateKey = require('../middlewares/authenticate_api_key');
 const {
   getAllStates,
   getState,
@@ -10,10 +9,10 @@ const {
 
 const router = express.Router();
 
-router.get('/regions', authenticateKey, getAllRegions);
-router.get('/states', authenticateKey, getAllStates);
-router.get('/state/:stateId', authenticateKey, getState);
-router.get('/region/:regionId', authenticateKey, getRegion);
+router.get('/regions', getAllRegions);
+router.get('/states', getAllStates);
+router.get('/state/:stateId', getState);
+router.get('/region/:regionId', getRegion);
 // router.get('/lga', authenticateKey, );
 
 module.exports = router;
