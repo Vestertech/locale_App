@@ -1,4 +1,6 @@
 /node_modules
 .env
-
+/data/created_data.json
+/data/lga.js
+/data/raw.json
 statetrial.js
