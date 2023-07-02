@@ -8,6 +8,7 @@
                 "longitude": 7.486002487
             }
         },
+        "population": 3727347,
         "LGA": [
             "Aba South",
             "Arochukwu",
@@ -31,9 +32,12 @@
         "stateName": "Adamawa State",
         "state_metadata": {
             "capital": "Yola",
-            "latitude": 10.2703408,
-            "longitude": 13.2700321
+            "coordinates": {
+                "latitude": 10.2703408,
+                "longitude": 13.2700321
+            }
         },
+        "population": 4248436,
         "LGA": [
             "Fufure",
             "Ganye",
@@ -61,9 +65,12 @@
         "stateName": "Akwa Ibom State",
         "state_metadata": {
             "capital": "Uyo",
-            "latitude": 5.007996056,
-            "longitude": 7.849998524
+            "coordinates": {
+                "latitude": 5.007996056,
+                "longitude": 7.849998524
+            }
         },
+        "population": 5482177,
         "LGA": [
             "Eastern Obolo",
             "Eket",
@@ -101,9 +108,12 @@
         "stateName": "Anambra State",
         "state_metadata": {
             "capital": "Awka",
-            "latitude": 6.210433572,
-            "longitude": 7.06999711
+            "coordinates": {
+                "latitude": 6.210433572,
+                "longitude": 7.06999711
+            }
         },
+        "population": 5527809,
         "LGA": [
             "Anambra East",
             "Anambra West",
@@ -131,9 +141,12 @@
         "stateName": "Bauchi State",
         "state_metadata": {
             "capital": "Bauchi",
-            "latitude": 11.68040977,
-            "longitude": 10.19001339
+            "coordinates": {
+                "latitude": 11.68040977,
+                "longitude": 10.19001339
+            }
         },
+        "population": 6537314,
         "LGA": [
             "Bauchi",
             "Bogoro",
@@ -160,9 +173,12 @@
         "stateName": "Bayelsa State",
         "state_metadata": {
             "capital": "Yenagoa",
-            "latitude": 4.762978599524332,
-            "longitude": 6.028898
+            "coordinates": {
+                "latitude": 4.762978599524332,
+                "longitude": 6.028898
+            }
         },
+        "population": 2277961,
         "LGA": [
             "Ekeremor",
             "Kolokuma/Opokuma",
@@ -180,6 +196,7 @@
             "latitude": 7.190399596,
             "longitude": 8.129984089
         },
+        "population": 5741815,
         "LGA": [
             "Apa",
             "Ado",
@@ -209,9 +226,12 @@
         "stateName": "Borno State",
         "state_metadata": {
             "capital": "Maiduguri",
-            "latitude": 10.62042279,
-            "longitude": 12.18999467
+            "coordinates": {
+                "latitude": 10.62042279,
+                "longitude": 12.18999467
+            }
         },
+        "population": 5860183,
         "LGA": [
             "Askira/Uba",
             "Bama",
@@ -245,9 +265,12 @@
         "stateName": "Cross River State",
         "state_metadata": {
             "capital": "Calabar",
-            "latitude": 4.960406513,
-            "longitude": 8.330023558
+            "coordinates": {
+                "latitude": 4.960406513,
+                "longitude": 8.330023558
+            }
         },
+        "population": 3866269,
         "LGA": [
             "Akamkpa",
             "Akpabuyo",
@@ -277,7 +300,7 @@
                 "longitude": 5.680004434
             }
         },
-        "population": 3008976,
+        "population": 5663362,
         "LGA": [
             "Aniocha South",
             "Bomadi",
@@ -309,9 +332,12 @@
         "stateName": "Ebonyi State",
         "state_metadata": {
             "capital": "Abakaliki",
-            "latitude": 6.199691799435065,
-            "longitude": 8.0348906
+            "coordinates": {
+                "latitude": 6.199691799435065,
+                "longitude": 8.0348906
+            }
         },
+        "population": 2880383,
         "LGA": [
             "Afikpo North",
             "Afikpo South",
@@ -331,9 +357,12 @@
         "stateName": "Edo State",
         "state_metadata": {
             "capital": "Benin City",
-            "latitude": 6.340477314,
-            "longitude": 5.620008096
+            "coordinates": {
+                "latitude": 6.340477314,
+                "longitude": 5.620008096
+            }
         },
+        "population": 4235595,
         "LGA": [
             "Egor",
             "Esan Central",
@@ -358,9 +387,12 @@
         "stateName": "Ekiti State",
         "state_metadata": {
             "capital": "Ado Ekiti",
-            "latitude": 7.736890999391845,
-            "longitude": 5.2738326
+            "coordinates": {
+                "latitude": 7.736890999391845,
+                "longitude": 5.2738326
+            }
         },
+        "population": 3270798,
         "LGA": [
             "Efon",
             "Ekiti East",
@@ -383,9 +415,12 @@
         "stateName": "Enugu State",
         "state_metadata": {
             "capital": "Enugu",
-            "latitude": 6.553609399419997,
-            "longitude": 7.4143061
+            "coordinates": {
+                "latitude": 6.553609399419997,
+                "longitude": 7.4143061
+            }
         },
+        "population": 4411119,
         "LGA": [
             "Awgu",
             "Enugu East",
@@ -406,12 +441,15 @@
         ]
     },
     {
-        "stateName": "FCT",
+        "stateName": "FCT Abuja",
         "state_metadata": {
             "capital": "FCT",
-            "latitude": 8.831122799397733,
-            "longitude": 7.172467300000001
+            "coordinates": {
+                "longitude": 7.172467300000001,
+                "latitude": 8.831122799397733
+            }
         },
+        "population": 3564126,
         "LGA": [
             "Bwari",
             "Gwagwalada",
@@ -424,9 +462,12 @@
         "stateName": "Gombe State",
         "state_metadata": {
             "capital": "Gombe",
-            "latitude": 10.383009999458512,
-            "longitude": 11.206567
+            "coordinates": {
+                "latitude": 10.383009999458512,
+                "longitude": 11.206567
+            }
         },
+        "population": 3256962,
         "LGA": [
             "Balanga",
             "Billiri",
@@ -444,9 +485,12 @@
         "stateName": "Imo State",
         "state_metadata": {
             "capital": "Owerri",
-            "latitude": 5.585945599467946,
-            "longitude": 7.0669651
+            "coordinates": {
+                "latitude": 5.585945599467946,
+                "longitude": 7.0669651
+            }
         },
+        "population": 5408756,
         "LGA": [
             "Ahiazu Mbaise",
             "Ehime Mbano",
@@ -480,9 +524,12 @@
         "stateName": "Jigawa State",
         "state_metadata": {
             "capital": "Dutse",
-            "latitude": 12.325236199610885,
-            "longitude": 9.510329599999999
+            "coordinates": {
+                "latitude": 12.325236199610885,
+                "longitude": 9.510329599999999
+            }
         },
+        "population": 5828163,
         "LGA": [
             "Babura",
             "Biriniwa",
@@ -516,9 +563,12 @@
         "stateName": "Kaduna State",
         "state_metadata": {
             "capital": "Kaduna",
-            "latitude": 10.382531799458487,
-            "longitude": 7.853322600000001
+            "coordinates": {
+                "latitude": 10.382531799458487,
+                "longitude": 7.853322600000001
+            }
         },
+        "population": 8252366,
         "LGA": [
             "Chikun",
             "Giwa",
@@ -548,9 +598,12 @@
         "stateName": "Kano State",
         "state_metadata": {
             "capital": "Kano",
-            "latitude": 11.894838899570903,
-            "longitude": 8.5364136
+            "coordinates": {
+                "latitude": 11.894838899570903,
+                "longitude": 8.5364136
+            }
         },
+        "population": 13076892,
         "LGA": [
             "Albasu",
             "Bagwai",
@@ -601,9 +654,12 @@
         "stateName": "Katsina State",
         "state_metadata": {
             "capital": "Katsina",
-            "latitude": 12.563082499634245,
-            "longitude": 7.6207063
+            "coordinates": {
+                "latitude": 12.563082499634245,
+                "longitude": 7.6207063
+            }
         },
+        "population": 7831319,
         "LGA": [
             "Batagarawa",
             "Batsari",
@@ -644,9 +700,12 @@
         "stateName": "Kebbi State",
         "state_metadata": {
             "capital": "Birnin Kebbi",
-            "latitude": 11.416757399530335,
-            "longitude": 4.107454499999999
+            "coordinates": {
+                "latitude": 11.416757399530335,
+                "longitude": 4.107454499999999
+            }
         },
+        "population": 4440050,
         "LGA": [
             "Arewa Dandi",
             "Argungu",
@@ -677,6 +736,7 @@
             "latitude": 7.79496019939138,
             "longitude": 6.686866899999999
         },
+        "population": 4473490,
         "LGA": [
             "Ajaokuta",
             "Ankpa",
@@ -707,6 +767,7 @@
             "latitude": 8.836789099397848,
             "longitude": 4.668848699999999
         },
+        "population": 3192893,
         "LGA": [
             "Baruten",
             "Edu",
@@ -734,7 +795,7 @@
                 "longitude": 3.5774005
             }
         },
-        "population": 7450180,
+        "population": 12550598,
         "LGA": [
             "Ajeromi-Ifelodun",
             "Alimosho",
@@ -761,9 +822,12 @@
         "stateName": "Nasarawa State",
         "state_metadata": {
             "capital": "Lafia",
-            "latitude": 8.438786799392046,
-            "longitude": 8.238284899999998
+            "coordinates": {
+                "latitude": 8.438786799392046,
+                "longitude": 8.238284899999998
+            }
         },
+        "population": 2523395,
         "LGA": [
             "Awe",
             "Doma",
@@ -786,6 +850,7 @@
             "latitude": 9.932608299434758,
             "longitude": 5.651108799999999
         },
+        "population": 5556247,
         "LGA": [
             "Agwara",
             "Bida",
@@ -817,9 +882,12 @@
         "stateName": "Ogun State",
         "state_metadata": {
             "capital": "Abeokuta",
-            "latitude": 6.978858199405861,
-            "longitude": 3.4389293
+            "coordinates": {
+                "latitude": 6.978858199405861,
+                "longitude": 3.4389293
+            }
         },
+        "population": 5217716,
         "LGA": [
             "Abeokuta South",
             "Ado-Odo/Ota",
@@ -846,9 +914,12 @@
         "stateName": "Ondo State",
         "state_metadata": {
             "capital": "Akure",
-            "latitude": 7.0209685994047035,
-            "longitude": 5.0567477
+            "coordinates": {
+                "latitude": 7.0209685994047035,
+                "longitude": 5.0567477
+            }
         },
+        "population": 4671695,
         "LGA": [
             "Akoko North-West",
             "Akoko South-West",
@@ -873,9 +944,12 @@
         "stateName": "Osun State",
         "state_metadata": {
             "capital": "Oshogbo",
-            "latitude": 7.548404699393967,
-            "longitude": 4.497830700000001
+            "coordinates": {
+                "latitude": 7.548404699393967,
+                "longitude": 4.497830700000001
+            }
         },
+        "population": 4705589,
         "LGA": [
             "Atakunmosa West",
             "Aiyedaade",
@@ -912,9 +986,12 @@
         "stateName": "Oyo State",
         "state_metadata": {
             "capital": "Ibadan",
-            "latitude": 8.215124899390593,
-            "longitude": 3.5642896999999993
+            "coordinates": {
+                "latitude": 8.215124899390593,
+                "longitude": 3.5642896999999993
+            }
         },
+        "population": 7840864,
         "LGA": [
             "Akinyele",
             "Atiba",
@@ -957,6 +1034,7 @@
             "latitude": 9.058344599402849,
             "longitude": 9.6826289
         },
+        "population": 4200442,
         "LGA": [
             "Barkin Ladi",
             "Bassa",
@@ -980,9 +1058,12 @@
         "stateName": "Rivers State",
         "state_metadata": {
             "capital": "Port Harcourt",
-            "latitude": 4.841602799518385,
-            "longitude": 6.8604088
+            "coordinates": {
+                "latitude": 4.841602799518385,
+                "longitude": 6.8604088
+            }
         },
+        "population": 7303924,
         "LGA": [
             "Ahoada East",
             "Ahoada West",
@@ -1012,9 +1093,12 @@
         "stateName": "Sokoto State",
         "state_metadata": {
             "capital": "Sokoto",
-            "latitude": 13.061119499685718,
-            "longitude": 5.3152203
+            "coordinates": {
+                "latitude": 13.061119499685718,
+                "longitude": 5.3152203
+            }
         },
+        "population": 4998090,
         "LGA": [
             "Bodinga",
             "Dange Shuni",
@@ -1044,9 +1128,12 @@
         "stateName": "Taraba State",
         "state_metadata": {
             "capital": "Jalingo",
-            "latitude": 8.0141333993904,
-            "longitude": 10.737633599999999
+            "coordinates": {
+                "latitude": 8.0141333993904,
+                "longitude": 10.737633599999999
+            }
         },
+        "population": 3066834,
         "LGA": [
             "Bali",
             "Donga",
@@ -1069,9 +1156,12 @@
         "stateName": "Yobe State",
         "state_metadata": {
             "capital": "Damaturu",
-            "latitude": 12.123324199591742,
-            "longitude": 11.506593699999998
+            "coordinates": {
+                "latitude": 12.123324199591742,
+                "longitude": 11.506593699999998
+            }
         },
+        "population": 3294137,
         "LGA": [
             "Bursari",
             "Damaturu",
@@ -1095,9 +1185,12 @@
         "stateName": "Zamfara State",
         "state_metadata": {
             "capital": "Gusau",
-            "latitude": 12.007899799581104,
-            "longitude": 6.4191432
+            "coordinates": {
+                "latitude": 12.007899799581104,
+                "longitude": 6.4191432
+            }
         },
+        "population": 4515427,
         "LGA": [
             "Bakura",
             "Birnin Magaji/Kiyaw",

@@ -21,7 +21,6 @@ const getRegion = asyncWrapper(async (req, res) => {
     select: 'stateName region',
   });
 
-  console.log('Hit DB');
   Cache.redis.set(cacheKey, JSON.stringify(region));
 
   res.status(200).json({ data: region });

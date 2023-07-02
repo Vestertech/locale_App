@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 
 const connectDB = require('./Db/connectDB');
 
@@ -9,17 +10,23 @@ const Cache = require('./config/redis');
 const developerRoute = require('./routes/developer_route');
 const createRoute = require('./routes/create');
 const locationRoute = require('./routes/location_routes');
-const notFound = require('./middlewares/notFound');
-const errorHandler = require('./middlewares/errorHandler');
 
-const authenticateKey = require('./middlewares/authenticate_api_key');
-const cacheMiddleware = require('./middlewares/cache_middleWare');
+// Middlewares
+const {
+  authenticateKey,
+  cacheMiddleware,
+  rateLimit,
+  errorHandler,
+  notFound,
+} = require('./middlewares');
 
 const app = express();
+app.use(rateLimit);
 app.use(express.json());
+// app.use(cors());
 
-app.use('/api/v1/developer', developerRoute);
 app.use('/api/v1/create', createRoute);
+app.use('/api/v1/developer', developerRoute);
 app.use('/api/v1/location', authenticateKey, cacheMiddleware, locationRoute);
 app.use(notFound);
 app.use(errorHandler);

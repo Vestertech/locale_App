@@ -95,7 +95,6 @@ const getAllStates = asyncWrapper(async (req, res) => {
 
   const states = await result;
 
-  console.log('Hit DB');
   Cache.redis.set(cacheKey, JSON.stringify(states));
 
   res.status(200).json({ data: states, nbHits: states.length });

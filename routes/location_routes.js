@@ -13,6 +13,5 @@ router.get('/regions', getAllRegions);
 router.get('/states', getAllStates);
 router.get('/state/:stateId', getState);
 router.get('/region/:regionId', getRegion);
-// router.get('/lga', authenticateKey, );
 
 module.exports = router;
