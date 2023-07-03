@@ -1,4 +1,4 @@
-const Cache = require('../config/redis');
+const Cache = require('../../config/redis');
 const asyncWrapper = require('./asyncWrapper');
 
 const cacheData = asyncWrapper(async (req, res, next) => {

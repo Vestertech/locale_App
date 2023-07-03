@@ -1,7 +1,7 @@
 const StateModel = require('../models/states');
 const asyncWrapper = require('../middlewares/asyncWrapper');
 
-const Cache = require('../config/redis');
+const Cache = require('../../config/redis');
 
 const getAllStates = asyncWrapper(async (req, res) => {
   const { numericFilters, sort, stateName, LGA, fields } = req.query;

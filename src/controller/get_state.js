@@ -3,7 +3,7 @@ const StateModel = require('../models/states');
 const asyncWrapper = require('../middlewares/asyncWrapper');
 const { notFoundError } = require('../errors');
 
-const Cache = require('../config/redis');
+const Cache = require('../../config/redis');
 
 const getState = asyncWrapper(async (req, res) => {
   const { stateId } = req.params;

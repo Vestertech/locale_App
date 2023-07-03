@@ -1,7 +1,7 @@
 const RegionModel = require('../models/regions');
 const asyncWrapper = require('../middlewares/asyncWrapper');
 
-const Cache = require('../config/redis');
+const Cache = require('../../config/redis');
 
 const getAllRegions = asyncWrapper(async (req, res) => {
   const { fields } = req.query;

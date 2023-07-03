@@ -3,7 +3,7 @@ const RegionModel = require('../models/regions');
 const { notFoundError } = require('../errors');
 const asyncWrapper = require('../middlewares/asyncWrapper');
 
-const Cache = require('../config/redis');
+const Cache = require('../../config/redis');
 
 const getRegion = asyncWrapper(async (req, res) => {
   const { regionId } = req.params;

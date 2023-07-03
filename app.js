@@ -7,9 +7,9 @@ const connectDB = require('./Db/connectDB');
 
 const Cache = require('./config/redis');
 
-const developerRoute = require('./routes/developer_route');
-const createRoute = require('./routes/create');
-const locationRoute = require('./routes/location_routes');
+const developerRoute = require('./src/routes/developer_route');
+const createRoute = require('./src/routes/create');
+const locationRoute = require('./src/routes/location_routes');
 
 // Middlewares
 const {
@@ -18,7 +18,7 @@ const {
   rateLimit,
   errorHandler,
   notFound,
-} = require('./middlewares');
+} = require('./src/middlewares');
 
 const app = express();
 app.use(rateLimit);
