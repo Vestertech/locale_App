@@ -35,6 +35,7 @@ const createAdminUser = asyncWrapper(async (req, res) => {
   res.status(StatusCodes.CREATED).json({ email, Id: adminUser._id });
 });
 
+// LOGIN USER FUNCTION
 const loginUser = asyncWrapper(async (req, res) => {
   const { email, password } = req.body;
 
@@ -54,6 +55,7 @@ const loginUser = asyncWrapper(async (req, res) => {
     throw new badRequestError('Invalid email or password');
   }
 
+  // Create a signed jwt token
   const token = jwt.sign(
     { email: user.email, id: user._id },
     process.env.JWT_SECRET,
