@@ -6,7 +6,7 @@ const { badRequestError } = require('../errors');
 
 const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a021f53251328cbc21f90c',
+    _id: '64a5de77161036644fe775aa',
   });
 
   if (!region || region.length === 0) {
@@ -29,7 +29,7 @@ const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a021493251328cbc21f906',
+    _id: '64a5dfbd96ae290b0f5e3018',
   });
 
   if (!region || region.length === 0) {
@@ -52,7 +52,7 @@ const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a021ae3251328cbc21f909',
+    _id: '64a5e01b96ae290b0f5e301b',
   });
 
   if (!region || region.length === 0) {
@@ -75,7 +75,7 @@ const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInSouthEasternRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a0223d3251328cbc21f90f',
+    _id: '64a5e05596ae290b0f5e301e',
   });
 
   if (!region || region.length === 0) {

@@ -3,13 +3,19 @@ const RegionModel = require('../models/regions');
 const { asyncWrapper } = require('../middlewares');
 
 const createRegion = asyncWrapper(async (req, res) => {
-  newRegion = await RegionModel.create(req.body);
+  const newRegion = await RegionModel.create({ ...req.body });
 
-  res.status(200).json({ msg: 'Success', regionId: newRegion._id });
+  res
+    .status(200)
+    .json({
+      msg: `${newRegion.regionName} created successfully`,
+      regionId: newRegion._id,
+    });
 });
 
 // try {
 //   // create a new instance of the region model
+
 //   const newRegion = new RegionModel({
 //     ...req.body,
 //   });
