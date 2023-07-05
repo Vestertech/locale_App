@@ -16,4 +16,4 @@ const jwtAuthentication = asyncWrapper(async (req, res, next) => {
   next();
 });
 
-module.exports = jwtAuthentication
+module.exports = jwtAuthentication;
