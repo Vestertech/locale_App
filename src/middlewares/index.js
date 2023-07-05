@@ -5,6 +5,7 @@ const errorHandler = require('./errorHandler');
 const notFound = require('./notFound');
 const rateLimit = require('./rate_limit_mw');
 const jwtAuthentication = require('./jwt_auth');
+const adminMiddleware = require('./admin_middleware');
 
 module.exports = {
   asyncWrapper,
@@ -14,4 +15,5 @@ module.exports = {
   notFound,
   rateLimit,
   jwtAuthentication,
+  adminMiddleware,
 };

@@ -19,6 +19,7 @@ const {
   errorHandler,
   notFound,
   jwtAuthentication,
+  adminMiddleware,
 } = require('./src/middlewares');
 
 const app = express();
@@ -26,8 +27,8 @@ app.use(rateLimit);
 app.use(express.json());
 // app.use(cors());
 
-app.use('/api/v1/create', jwtAuthentication, createRoute);
 app.use('/api/v1/developer', developerRoute);
+app.use('/api/v1/create', jwtAuthentication, adminMiddleware, createRoute);
 app.use('/api/v1/location', authenticateKey, cacheMiddleware, locationRoute);
 app.use(notFound);
 app.use(errorHandler);
