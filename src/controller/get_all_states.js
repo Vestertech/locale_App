@@ -8,15 +8,15 @@ const getAllStates = asyncWrapper(async (req, res) => {
 
   // Cache layer for region
   // const cacheKey = `states_${numericFilters}_${sort}_${stateName}_${LGA}_${fields}`;
-
   // const cacheState = await Cache.redis.get(cacheKey);
-
   // if (cacheState) {
-  //   // cache hit
+  //    cache hit
   //   return res.status(200).json({
   //     states: JSON.parse(cacheState),
   //   });
   // }
+
+  //Get the cache key for the request made to the server
   const cacheKey = req.originalUrl;
 
   const queryObject = {};
@@ -95,7 +95,10 @@ const getAllStates = asyncWrapper(async (req, res) => {
 
   const states = await result;
 
-  Cache.redis.set(cacheKey, JSON.stringify(states));
+  // Cache miss, set the cache key and value
+  // set expiration time to 6 months
+  // NX sets the key only if it does not already exist
+  Cache.redis.set(cacheKey, JSON.stringify(states), { EX: 15780000, NX: true });
 
   res.status(200).json({ data: states, nbHits: states.length });
 });

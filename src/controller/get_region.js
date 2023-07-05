@@ -21,7 +21,7 @@ const getRegion = asyncWrapper(async (req, res) => {
     select: 'stateName region',
   });
 
-  Cache.redis.set(cacheKey, JSON.stringify(region));
+  Cache.redis.set(cacheKey, JSON.stringify(region), { EX: 15780000, NX: true });
 
   res.status(200).json({ data: region });
 });

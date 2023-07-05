@@ -29,7 +29,10 @@ const getAllRegions = asyncWrapper(async (req, res) => {
   const regions = await result;
 
   // console.log('Hit DB');
-  Cache.redis.set(cacheKey, JSON.stringify(regions));
+  Cache.redis.set(cacheKey, JSON.stringify(regions), {
+    EX: 15780000,
+    NX: true,
+  });
 
   res.status(200).json({ data: regions });
 });

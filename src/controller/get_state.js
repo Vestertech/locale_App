@@ -18,7 +18,7 @@ const getState = asyncWrapper(async (req, res) => {
   const state = await StateModel.findOne({ _id: stateId }).select('-region');
 
   // console.log('Hit DB');
-  Cache.redis.set(cacheKey, JSON.stringify(state));
+  Cache.redis.set(cacheKey, JSON.stringify(state), { EX: 15780000, NX: true });
 
   res.status(200).json({ data: state });
 });
