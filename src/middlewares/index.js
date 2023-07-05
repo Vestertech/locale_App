@@ -4,6 +4,7 @@ const cacheMiddleware = require('./cache_middleWare');
 const errorHandler = require('./errorHandler');
 const notFound = require('./notFound');
 const rateLimit = require('./rate_limit_mw');
+const jwtAuthentication = require('./jwt_auth');
 
 module.exports = {
   asyncWrapper,
@@ -12,4 +13,5 @@ module.exports = {
   errorHandler,
   notFound,
   rateLimit,
+  jwtAuthentication,
 };
