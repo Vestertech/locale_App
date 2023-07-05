@@ -26,12 +26,12 @@ const DeveloperSchema = new Schema({
   },
   apiKey: {
     type: String,
-    required: true,
+    //required: true,
     //select: false, // Excludes the apikey field by default when querying
   },
   maskedKey: {
     type: String,
-    required: true,
+    //required: true,
   },
   password: {
     type: String,
@@ -39,9 +39,10 @@ const DeveloperSchema = new Schema({
     minlength: 6,
     default: '',
   },
-  usage: {
-    date: { type: Date, default: new Date().toISOString() },
-    count: { type: Number, default: 0 },
+  role: {
+    type: String,
+    enum: ['user', 'Super'],
+    default: 'user',
   },
 });
 
@@ -50,10 +51,8 @@ DeveloperSchema.pre('save', async function (next) {
   if (!this.isModified('apiKey')) {
     return next();
   }
-
   try {
     const salt = await bcrypt.genSalt(10);
-
     this.password = await bcrypt.hash(this.password, salt);
     this.apiKey = await bcrypt.hash(this.apiKey, salt);
     next();
@@ -68,7 +67,8 @@ DeveloperSchema.methods.compareAPIKey = async function (developerAPIKey) {
     const isMatch = await bcrypt.compare(developerAPIKey, this.apiKey);
     return isMatch;
   } catch (error) {
-    throw new Error(error);
+    return next(error);
+    // throw new Error(error);
   }
 };
 
