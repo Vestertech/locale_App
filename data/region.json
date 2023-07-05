@@ -5,10 +5,10 @@
       "coordinates": {
         "latitude": 9.0354,
         "longitude": 7.4898
-      },
-      "size": "35000 square Km",
-      "population": 29252408
-    }
+      }
+    },
+    "size": "35000 square Km",
+    "population": 29252408
   },
   {
     "regionName": "North-East",
@@ -16,10 +16,10 @@
       "coordinates": {
         "latitude": 11.8299,
         "longitude": 13.1507
-      },
-      "size": "78000 square Km",
-      "population": 26263866
-    }
+      }
+    },
+    "size": "78000 square Km",
+    "population": 26263866
   },
   {
     "regionName": "North-West",
@@ -27,10 +27,10 @@
       "coordinates": {
         "latitude": 12.2189,
         "longitude": 5.3107
-      },
-      "size": "216000 square Km",
-      "population": 48942307
-    }
+      }
+    },
+    "size": "216000 square Km",
+    "population": 48942307
   },
   {
     "regionName": "South-East",
@@ -38,10 +38,10 @@
       "coordinates": {
         "latitude": 5.9789,
         "longitude": 7.3986
-      },
-      "size": "21000 square Km",
-      "population": 21955414
-    }
+      }
+    },
+    "size": "21000 square Km",
+    "population": 21955414
   },
   {
     "regionName": "South-South",
@@ -49,10 +49,10 @@
       "coordinates": {
         "latitude": 4.8952,
         "longitude": 8.3363
-      },
-      "size": "95000 square Km",
-      "population": 28829288
-    }
+      }
+    },
+    "size": "95000 square Km",
+    "population": 28829288
   },
   {
     "regionName": "South-West",
