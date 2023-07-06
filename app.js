@@ -26,7 +26,7 @@ const app = express();
 app.use(rateLimit);
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+// app.use(helmet());
 
 app.use('/', (req, res) => {
   res.status(200).json({ message: 'Locale API' });
