@@ -28,6 +28,9 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+app.use('/', (req, res) => {
+  res.status(200).json({ message: 'Locale API' });
+});
 app.use('/api/v1/developer', developerRoute);
 app.use('/api/v1/create', jwtAuthentication, createRoute);
 app.use('/api/v1/location', authenticateKey, cacheMiddleware, locationRoute);
