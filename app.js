@@ -4,6 +4,11 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+// Swagger
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./Api_documentation.yml');
+
 const connectDB = require('./Db/connectDB');
 
 const Cache = require('./config/redis');
@@ -28,6 +33,13 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+app.get('/', (req, res) => {
+  res.send(
+    '<h1>Welcome to the Locale API</h1><a href="/api-docs">API Documentation</a>'
+  );
+});
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/developer', developerRoute);
 app.use('/api/v1/create', jwtAuthentication, createRoute);
 app.use('/api/v1/location', authenticateKey, cacheMiddleware, locationRoute);

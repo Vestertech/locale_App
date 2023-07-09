@@ -6,7 +6,7 @@ const { unAuthenticatedError } = require('../errors');
 const jwtAuthentication = asyncWrapper(async (req, res, next) => {
   const authenticatedUser = req.headers.authorization;
   if (!authenticatedUser || !authenticatedUser.startsWith('Bearer ')) {
-    throw new unAuthenticatedError('User not authenticated');
+    throw new unAuthenticatedError('User not authorized');
   }
   const authenticatedToken = authenticatedUser.split(' ')[1];
 
