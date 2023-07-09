@@ -31,7 +31,7 @@ const app = express();
 app.use(rateLimit);
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+// app.use(helmet());
 
 app.get('/', (req, res) => {
   res.send(
