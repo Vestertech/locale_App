@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 
 const {
   createStatesInNorthWestRegion,
@@ -8,16 +8,16 @@ const {
   createStatesInSouthEasternRegion,
   createStatesInSouthSouthRegion,
   createStatesInSouthWesternRegion,
-} = require('../controller');
+} = require("../controller");
 
 const router = express.Router();
 
-router.post('/region', createRegion);
-router.post('/state/south_west', createStatesInSouthWesternRegion);
-router.post('/state/north_central', createStatesInNorthCentralRegion);
-router.post('/state/north_west', createStatesInNorthWestRegion);
-router.post('/state/north_east', createStatesInNorthEasternRegion);
-router.post('/state/south_east', createStatesInSouthEasternRegion);
-router.post('/state/south_south', createStatesInSouthSouthRegion);
+router.post("/region", createRegion);
+router.post("/state/south_west", createStatesInSouthWesternRegion);
+router.post("/state/north_central", createStatesInNorthCentralRegion);
+router.post("/state/north_west", createStatesInNorthWestRegion);
+router.post("/state/north_east", createStatesInNorthEasternRegion);
+router.post("/state/south_east", createStatesInSouthEasternRegion);
+router.post("/state/south_south", createStatesInSouthSouthRegion);
 
 module.exports = router;
