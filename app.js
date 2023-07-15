@@ -11,7 +11,7 @@ const swaggerDocument = YAML.load("./Api_documentation.yml");
 
 const connectDB = require("./Db/connectDB");
 
-// const Cache = require('./config/redis');
+const Cache = require("./config/redis");
 
 const developerRoute = require("./src/routes/developer_route");
 const createRoute = require("./src/routes/create");
@@ -53,7 +53,7 @@ const start = async () => {
     await connectDB(process.env.MONGODB_URI);
 
     // connect to Redis
-    // Cache.connect();
+    Cache.connect();
 
     app.listen(PORT, () => {
       console.log(`Server listening on ${PORT}!!!`);

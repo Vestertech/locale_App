@@ -12,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vestertech/locale_App"
+    "url": "https://github.com/Vestertech/locale_App.git"
   },
-  "author": "Muyi",
+  "author": "Sylvester Eziagor",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Vestertech/locale_App/issues"

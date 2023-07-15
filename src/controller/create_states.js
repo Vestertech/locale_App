@@ -1,16 +1,16 @@
 // Import models
-const StateModel = require('../models/states');
-const RegionModel = require('../models/regions');
-const asyncWrapper = require('../middlewares/asyncWrapper');
-const { badRequestError } = require('../errors');
+const StateModel = require("../models/states");
+const RegionModel = require("../models/regions");
+const asyncWrapper = require("../middlewares/asyncWrapper");
+const { badRequestError } = require("../errors");
 
 const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a5de77161036644fe775aa',
+    _id: "64addc97c03d80924e3bc3ec",
   });
 
   if (!region || region.length === 0) {
-    throw new badRequestError('Region not found');
+    throw new badRequestError("Region not found");
   }
 
   const { LGA } = req.body;
@@ -29,11 +29,11 @@ const createStatesInNorthWestRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a5dfbd96ae290b0f5e3018',
+    _id: "64ab3928c9a73ab687487046",
   });
 
   if (!region || region.length === 0) {
-    throw new badRequestError('Region not found');
+    throw new badRequestError("Region not found");
   }
 
   const { LGA } = req.body;
@@ -52,11 +52,11 @@ const createStatesInNorthCentralRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a5e01b96ae290b0f5e301b',
+    _id: "64addbbfc03d80924e3bc3e9",
   });
 
   if (!region || region.length === 0) {
-    throw new badRequestError('Region not found');
+    throw new badRequestError("Region not found");
   }
 
   const { LGA } = req.body;
@@ -75,11 +75,11 @@ const createStatesInNorthEasternRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInSouthEasternRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '64a5e05596ae290b0f5e301e',
+    _id: "64addcdec03d80924e3bc3ef",
   });
 
   if (!region || region.length === 0) {
-    throw new badRequestError('Region not found');
+    throw new badRequestError("Region not found");
   }
 
   const { LGA } = req.body;
@@ -101,11 +101,11 @@ const createStatesInSouthEasternRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInSouthSouthRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '649e46315118ccdd57ef3b78',
+    _id: "64addd38c03d80924e3bc3f2",
   });
 
   if (!region || region.length === 0) {
-    throw new badRequestError('Region not found');
+    throw new badRequestError("Region not found");
   }
 
   const { LGA } = req.body;
@@ -124,11 +124,11 @@ const createStatesInSouthSouthRegion = asyncWrapper(async (req, res) => {
 
 const createStatesInSouthWesternRegion = asyncWrapper(async (req, res) => {
   const region = await RegionModel.findById({
-    _id: '649e52114ff6f5f752a99eb1',
+    _id: "64addd6ac03d80924e3bc3f5",
   });
 
   if (!region || region.length === 0) {
-    throw new badRequestError('Region not found');
+    throw new badRequestError("Region not found");
   }
 
   const { LGA } = req.body;

@@ -1,5 +1,5 @@
-const Redis = require('redis');
-require('dotenv').config();
+const Redis = require("redis");
+require("dotenv").config();
 
 class Cache {
   constructor() {
@@ -14,12 +14,12 @@ class Cache {
 
       this.redis.connect();
 
-      this.redis.on('connect', () => {
-        console.log('Redis connected');
+      this.redis.on("connect", () => {
+        console.log("Redis connected");
       });
 
-      this.redis.on('error', () => {
-        console.log('Redis connection error');
+      this.redis.on("error", () => {
+        console.log("Redis connection error");
       });
     } catch (error) {
       console.log(error);
