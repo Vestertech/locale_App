@@ -1,628 +1,628 @@
-openapi: 3.0.0
-info:
-  title: LOCATE_NIGERIA_API
-  description: An API that helps developers know more about Nigeria. The API shows all of Nigeria's regions, states and local government areas
-  contact:
-    name: Osamuyi
-    email: osamuyia1@gmail.com
-  version: '1.0'
-servers:
-- url: https://locate-nigeria.onrender.com/api/v1
-  variables: {}
-paths:
-  /developer/register:
-    post:
-      tags:
-      - Auth User
-      summary: Register new user
-      description: Register's regular users, and responds with an API key for the user to access  all read-only(GET) routes
-      operationId: Registernewuser
-      parameters: []
-      requestBody:
-        description: To register a new user, provide a name, unique email and password
-        content:
-          application/json:
-            schema:
-              allOf:
-                - $ref: '#/components/schemas/RegisternewuserRequest'
-                  example:
-                    name: smart
-                    password: secret
-                    email: smart7@gmail.com
-        required: true
-      responses:
-        '200':
-          description: ''
-          headers: {}
-        '404':
-          description: Please, all fields are required          
-      deprecated: false
-      security: []
-  /location/states:
-    get:
-      tags:
-      - States
-      summary: Get All states
-      description: Returns all the states in Nigeria, irrespective of region
-      operationId: GetAllstates
-      parameters:
-      - name: Gets all states in the country
-        in: query
-        description: Returns all the states
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/states
-      - name: limit
-        in: query
-        description: Determine the amount of document(s) to be displayed per page
-        style: form
-        explode: true
-        schema:
-          type: string
-          default: '3'
-          example: https://locate-nigeria.onrender.com/api/v1/location/states?limit=2
-      - name: Fields
-        in: query
-        description: To return some specific fields in the response.
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/states?fields=regionName,LGA
-      - name: numericFilters
-        in: query
-        description: Returns all states that meets the filter criteria
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/states?numericFilters=population>=8000000
-      - name: sort
-        in: query
-        description: Sorts the returned object either in ascending or descending order
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/states?sort=-population
-      - name: stateName
-        in: query
-        description: Returns state whose name is defined
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/states?stateName=lagos
-      - name: LGA
-        in: query
-        description: Search for a local government area by its name
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/states?LGA=ikpoba
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-  /location/state/{stateId}:
-    get:
-      tags:
-      - States
-      summary: Get State By Id
-      description: Returns a specific state whose ID matches the entered value
-      operationId: GetStateById
-      parameters: 
-        - in: path
-          name: stateId
-          description: ''
-          required: true
-          style: simple
-          explode: true
-          schema:
-            type: string
-            pattern: ^[0-9a-fA-F]{24}$
-      responses:
-        '200':
-          description: ''
-          headers: {}
-        '404':
-          description: Id {id} is not valid
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      security:
-      - apiAccessKey: []
-  /create/region:
-    post:
-      tags:
-      - Admin write access
-      summary: Create Region
-      description: Creates each region, this route is protected and can only be accessed by an admin user.
-      operationId: CreateRegion
-      parameters: []
-      requestBody:
-        description: Creates a region based on the value provided in the body field
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateRegionRequest'
-              - description: Creates a region based on the value provided in the body field
-        required: true
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            text/plain:
-              schema:
-                type: object
-        '401':
-          description: User is not authorized
-        '404':
-          description: Duplicate key value
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      servers:
-      - url: https://locate-nigeria.onrender.com/api/v1
-        variables: {}
-  /create/state/region_name:
-    post:
-      tags:
-      - Admin write access
-      summary: Create State
-      description: This creates states. But this endpoint can only be accessed by an authorized admin user.
-      operationId: CreateState
-      requestBody:
-        description: Creates a state based on the provided fields in the body field.
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateStateRequest'
-              - description: Creates a state based on the provided fields in the body field.
-                example:
-                  stateName: Sokoto State
-                  state_metadata:
-                    capital: Sokoto
-                    coordintes:
-                      latitude: 13.0611194996857
-                      longitude: 5.3152203
-                    population: 11500456
-                  lgas:
-                  - Bodinga
-                  - Dange Shuni
-                  - Gada
-                  - Goronyo
-                  - Gudu
-                  - Gwadabawa
-                  - Illela
-                  - Isa
-                  - Kebbe
-                  - Kware
-                  - Rabah
-                  - Sabon Birni
-                  - Shagari
-                  - Silame
-                  - Sokoto North
-                  - Sokoto South
-                  - Tambuwal
-                  - Tangaza
-                  - Tureta
-                  - Wamako
-                  - Wurno
-                  - Yabo
-            example:
-              stateName: Sokoto State
-              state_metadata:
-                capital: Sokoto
-                coordintes:
-                  latitude: 13.0611194996857
-                  longitude: 5.3152203
-                population: 11500456
-              lgas:
-              - Bodinga
-              - Dange Shuni
-              - Gada
-              - Goronyo
-              - Gudu
-              - Gwadabawa
-              - Illela
-              - Isa
-              - Kebbe
-              - Kware
-              - Rabah
-              - Sabon Birni
-              - Shagari
-              - Silame
-              - Sokoto North
-              - Sokoto South
-              - Tambuwal
-              - Tangaza
-              - Tureta
-              - Wamako
-              - Wurno
-              - Yabo
-        required: true
-      responses:
-        '200':
-          description: ''
-          headers: {}
-        '401':
-          description: User is unathorized
-          content:
-            application/json:
-              schema: {}
-        '404':
-          description: Duplicate key value
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      servers:
-      - url: https://locate-nigeria.onrender.com/api/v1
-        variables: {}
-  /location/regions:
-    get:
-      tags:
-      - Regions
-      summary: Get All Regions
-      description: Gets all the regions in the country
-      operationId: GetAllRegions
-      parameters:
-      - name: page
-        in: query
-        description: Pagination, to determine which page to display, you enter the page number
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/regions?page=3
-      - name: limit
-        in: query
-        description: Determine the amount of document(s) to be displayed per page
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/regions?limit=2
-      - name: Fields
-        in: query
-        description: To return some specific fields in the response.
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: https://locate-nigeria.onrender.com/api/v1/location/regions?fields=regionName,size,population
-      responses:
-        '200':
-          description: ''
-          headers: {}
-        '500':
-          description: Something went wrong, please try again later
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      security:
-      - apiAccessKey: []
-  /location/region/{regionId}:
-    get:
-      tags:
-      - Regions
-      summary: Get Region
-      description: Returns specific regions whose ID matched and the states under the region
-      operationId: GetRegion
-      parameters: 
-        - in: path
-          name: regionId
-          description: ''
-          required: true
-          style: simple
-          explode: true
-          schema:
-            type: string
-            pattern: ^[0-9a-fA-F]{24}$        
-      responses:
-        '200':
-          description: Returns region with given Id           
-          headers: {}
-        '404':
-          description: Id {id} is not valid
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      security:
-      - apiAccessKey: []
-  /developer/login/admin:
-    post:
-      tags:
-      - Auth Admin
-      summary: Admin Login
-      description: Log in to the API as an admin user, a Jwt token will be returned to provide the admin user access to some write access.
-      operationId: AdminLogin
-      parameters: []
-      requestBody:
-        description: Provide email and password for authentication, in order to be able to get write access
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/AdminLoginRequest'
-              - description: Provide email and password for authentication, in order to be able to get write access
-                example:
-                  email: miles@gmail.com
-                  password: secretkey
-            example:
-              email: miles@gmail.com
-              password: secretkey
-        required: true
-      responses:
-        '200':
-          description: ''
-          headers: {}
-        '404':
-          description: Invalid Credentials
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      security: []
-  /developer/register/admin:
-    post:
-      tags:
-      - Auth Admin
-      summary: Register Admin User
-      description: Register's admin user.
-      operationId: RegisterAdminUser
-      parameters: []
-      requestBody:
-        description: To register an admin user,
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/RegisternewuserRequest'
-              - description: To register an admin user,
-                example:
-                  name: smith
-                  password: secret
-                  email: smith1@gmail.com
-                  role: ''
-            example:
-              name: smith
-              password: secret
-              email: smith1@gmail.com
-              role: ''
-        required: true
-      responses:
-        '200':
-          description: ''
-          headers: {}
-        '404':
-          description: Email and password are required
-          content:
-            application/json:
-              schema: {}
-      deprecated: false
-      security: []
-components:
-  schemas:
-    RegisternewuserRequest:
-      title: RegisternewuserRequest
-      required:
-      - name
-      - password
-      - email
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 30
-          pattern: ^[A-Za-z]+$
-        password:
-          type: string
-          maxLength: 30
-          pattern: ^.{6,}$
-        email:
-          type: string
-          format: email
-          pattern: ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
-      example:
-        name: smart
-        password: secret
-        email: smart7@gmail.com
-    CreateRegionRequest:
-      title: CreateRegionRequest
-      required:
-      - regionName
-      - metadata
-      type: object
-      properties:
-        regionName:
-          type: string
-        metadata:
-          allOf:
-          - $ref: '#/components/schemas/Metadata'
-          - {}
-      example:
-        regionName: North-Central
-        metadata:
-          coordinates:
-            latitude: 9.0354
-            longitude: 7.4898
-          size: 35000 square Km
-          population: 29252408
-    Metadata:
-      title: Metadata
-      required:
-      - coordinates
-      - size
-      - population
-      type: object
-      properties:
-        coordinates:
-          allOf:
-          - $ref: '#/components/schemas/Coordinates'
-          - {}
-        size:
-          type: string
-        population:
-          type: integer
-          format: int32
-      example:
-        coordinates:
-          latitude: 9.0354
-          longitude: 7.4898
-        size: 35000 square Km
-        population: 29252408
-    Coordinates:
-      title: Coordinates
-      required:
-      - latitude
-      - longitude
-      type: object
-      properties:
-        latitude:
-          type: number
-        longitude:
-          type: number
-      example:
-        latitude: 9.0354
-        longitude: 7.4898
-    CreateStateRequest:
-      title: CreateStateRequest
-      required:
-      - stateName
-      - state_metadata
-      - lgas
-      type: object
-      properties:
-        stateName:
-          type: string
-        state_metadata:
-          allOf:
-          - $ref: '#/components/schemas/StateMetadata'
-          - {}
-        lgas:
-          type: array
-          items:
-            type: string
-          description: ''
-      example:
-        stateName: Sokoto State
-        state_metadata:
-          capital: Sokoto
-          coordintes:
-            latitude: 13.0611194996857
-            longitude: 5.3152203
-          population: 11500456
-        lgas:
-        - Bodinga
-        - Dange Shuni
-        - Gada
-        - Goronyo
-        - Gudu
-        - Gwadabawa
-        - Illela
-        - Isa
-        - Kebbe
-        - Kware
-        - Rabah
-        - Sabon Birni
-        - Shagari
-        - Silame
-        - Sokoto North
-        - Sokoto South
-        - Tambuwal
-        - Tangaza
-        - Tureta
-        - Wamako
-        - Wurno
-        - Yabo
-    StateMetadata:
-      title: StateMetadata
-      required:
-      - capital
-      - coordintes
-      - population
-      type: object
-      properties:
-        capital:
-          type: string
-        coordintes:
-          allOf:
-          - $ref: '#/components/schemas/Coordintes'
-          - {}
-        population:
-          type: integer
-          format: int32
-      example:
-        capital: Sokoto
-        coordintes:
-          latitude: 13.0611194996857
-          longitude: 5.3152203
-        population: 11500456
-    Coordintes:
-      title: Coordintes
-      required:
-      - latitude
-      - longitude
-      type: object
-      properties:
-        latitude:
-          type: number
-        longitude:
-          type: number
-      example:
-        latitude: 13.0611194996857
-        longitude: 5.3152203
-    AdminLoginRequest:
-      title: AdminLoginRequest
-      required:
-      - email
-      - password
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      example:
-        email: miles@gmail.com
-        password: secretkey
-  securitySchemes:
-    apiAccessKey:
-      type: apiKey
-      name: x-api-key
-      in: header
-    adminAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Enter JWT token
-security: 
-- apiAccessKey: []
-- adminAuth: []
-tags:
-- name: Misc
-  description: ''
-- name: Auth User
-  description: ''
-- name: States
-  description: ''
-- name: Admin write access
-  description: ''
-- name: Regions
-  description: ''
-- name: Auth Admin
-  description: ''
+# openapi: 3.0.0
+# info:
+#   title: LOCATE_NIGERIA_API
+#   description: An API that helps developers know more about Nigeria. The API shows all of Nigeria's regions, states and local government areas
+#   contact:
+#     name: Osamuyi
+#     email: osamuyia1@gmail.com
+#   version: '1.0'
+# servers:
+# - url: https://locate-nigeria.onrender.com/api/v1
+#   variables: {}
+# paths:
+#   /developer/register:
+#     post:
+#       tags:
+#       - Auth User
+#       summary: Register new user
+#       description: Register's regular users, and responds with an API key for the user to access  all read-only(GET) routes
+#       operationId: Registernewuser
+#       parameters: []
+#       requestBody:
+#         description: To register a new user, provide a name, unique email and password
+#         content:
+#           application/json:
+#             schema:
+#               allOf:
+#                 - $ref: '#/components/schemas/RegisternewuserRequest'
+#                   example:
+#                     name: smart
+#                     password: secret
+#                     email: smart7@gmail.com
+#         required: true
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#         '404':
+#           description: Please, all fields are required
+#       deprecated: false
+#       security: []
+#   /location/states:
+#     get:
+#       tags:
+#       - States
+#       summary: Get All states
+#       description: Returns all the states in Nigeria, irrespective of region
+#       operationId: GetAllstates
+#       parameters:
+#       - name: Gets all states in the country
+#         in: query
+#         description: Returns all the states
+#         required: true
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/states
+#       - name: limit
+#         in: query
+#         description: Determine the amount of document(s) to be displayed per page
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           default: '3'
+#           example: https://locate-nigeria.onrender.com/api/v1/location/states?limit=2
+#       - name: Fields
+#         in: query
+#         description: To return some specific fields in the response.
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/states?fields=regionName,LGA
+#       - name: numericFilters
+#         in: query
+#         description: Returns all states that meets the filter criteria
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/states?numericFilters=population>=8000000
+#       - name: sort
+#         in: query
+#         description: Sorts the returned object either in ascending or descending order
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/states?sort=-population
+#       - name: stateName
+#         in: query
+#         description: Returns state whose name is defined
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/states?stateName=lagos
+#       - name: LGA
+#         in: query
+#         description: Search for a local government area by its name
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/states?LGA=ikpoba
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#       deprecated: false
+#   /location/state/{stateId}:
+#     get:
+#       tags:
+#       - States
+#       summary: Get State By Id
+#       description: Returns a specific state whose ID matches the entered value
+#       operationId: GetStateById
+#       parameters:
+#         - in: path
+#           name: stateId
+#           description: ''
+#           required: true
+#           style: simple
+#           explode: true
+#           schema:
+#             type: string
+#             pattern: ^[0-9a-fA-F]{24}$
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#         '404':
+#           description: Id {id} is not valid
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       security:
+#       - apiAccessKey: []
+#   /create/region:
+#     post:
+#       tags:
+#       - Admin write access
+#       summary: Create Region
+#       description: Creates each region, this route is protected and can only be accessed by an admin user.
+#       operationId: CreateRegion
+#       parameters: []
+#       requestBody:
+#         description: Creates a region based on the value provided in the body field
+#         content:
+#           application/json:
+#             schema:
+#               allOf:
+#               - $ref: '#/components/schemas/CreateRegionRequest'
+#               - description: Creates a region based on the value provided in the body field
+#         required: true
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#           content:
+#             text/plain:
+#               schema:
+#                 type: object
+#         '401':
+#           description: User is not authorized
+#         '404':
+#           description: Duplicate key value
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       servers:
+#       - url: https://locate-nigeria.onrender.com/api/v1
+#         variables: {}
+#   /create/state/region_name:
+#     post:
+#       tags:
+#       - Admin write access
+#       summary: Create State
+#       description: This creates states. But this endpoint can only be accessed by an authorized admin user.
+#       operationId: CreateState
+#       requestBody:
+#         description: Creates a state based on the provided fields in the body field.
+#         content:
+#           application/json:
+#             schema:
+#               allOf:
+#               - $ref: '#/components/schemas/CreateStateRequest'
+#               - description: Creates a state based on the provided fields in the body field.
+#                 example:
+#                   stateName: Sokoto State
+#                   state_metadata:
+#                     capital: Sokoto
+#                     coordintes:
+#                       latitude: 13.0611194996857
+#                       longitude: 5.3152203
+#                     population: 11500456
+#                   lgas:
+#                   - Bodinga
+#                   - Dange Shuni
+#                   - Gada
+#                   - Goronyo
+#                   - Gudu
+#                   - Gwadabawa
+#                   - Illela
+#                   - Isa
+#                   - Kebbe
+#                   - Kware
+#                   - Rabah
+#                   - Sabon Birni
+#                   - Shagari
+#                   - Silame
+#                   - Sokoto North
+#                   - Sokoto South
+#                   - Tambuwal
+#                   - Tangaza
+#                   - Tureta
+#                   - Wamako
+#                   - Wurno
+#                   - Yabo
+#             example:
+#               stateName: Sokoto State
+#               state_metadata:
+#                 capital: Sokoto
+#                 coordintes:
+#                   latitude: 13.0611194996857
+#                   longitude: 5.3152203
+#                 population: 11500456
+#               lgas:
+#               - Bodinga
+#               - Dange Shuni
+#               - Gada
+#               - Goronyo
+#               - Gudu
+#               - Gwadabawa
+#               - Illela
+#               - Isa
+#               - Kebbe
+#               - Kware
+#               - Rabah
+#               - Sabon Birni
+#               - Shagari
+#               - Silame
+#               - Sokoto North
+#               - Sokoto South
+#               - Tambuwal
+#               - Tangaza
+#               - Tureta
+#               - Wamako
+#               - Wurno
+#               - Yabo
+#         required: true
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#         '401':
+#           description: User is unathorized
+#           content:
+#             application/json:
+#               schema: {}
+#         '404':
+#           description: Duplicate key value
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       servers:
+#       - url: https://locate-nigeria.onrender.com/api/v1
+#         variables: {}
+#   /location/regions:
+#     get:
+#       tags:
+#       - Regions
+#       summary: Get All Regions
+#       description: Gets all the regions in the country
+#       operationId: GetAllRegions
+#       parameters:
+#       - name: page
+#         in: query
+#         description: Pagination, to determine which page to display, you enter the page number
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/regions?page=3
+#       - name: limit
+#         in: query
+#         description: Determine the amount of document(s) to be displayed per page
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/regions?limit=2
+#       - name: Fields
+#         in: query
+#         description: To return some specific fields in the response.
+#         style: form
+#         explode: true
+#         schema:
+#           type: string
+#           example: https://locate-nigeria.onrender.com/api/v1/location/regions?fields=regionName,size,population
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#         '500':
+#           description: Something went wrong, please try again later
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       security:
+#       - apiAccessKey: []
+#   /location/region/{regionId}:
+#     get:
+#       tags:
+#       - Regions
+#       summary: Get Region
+#       description: Returns specific regions whose ID matched and the states under the region
+#       operationId: GetRegion
+#       parameters:
+#         - in: path
+#           name: regionId
+#           description: ''
+#           required: true
+#           style: simple
+#           explode: true
+#           schema:
+#             type: string
+#             pattern: ^[0-9a-fA-F]{24}$
+#       responses:
+#         '200':
+#           description: Returns region with given Id
+#           headers: {}
+#         '404':
+#           description: Id {id} is not valid
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       security:
+#       - apiAccessKey: []
+#   /developer/login/admin:
+#     post:
+#       tags:
+#       - Auth Admin
+#       summary: Admin Login
+#       description: Log in to the API as an admin user, a Jwt token will be returned to provide the admin user access to some write access.
+#       operationId: AdminLogin
+#       parameters: []
+#       requestBody:
+#         description: Provide email and password for authentication, in order to be able to get write access
+#         content:
+#           application/json:
+#             schema:
+#               allOf:
+#               - $ref: '#/components/schemas/AdminLoginRequest'
+#               - description: Provide email and password for authentication, in order to be able to get write access
+#                 example:
+#                   email: miles@gmail.com
+#                   password: secretkey
+#             example:
+#               email: miles@gmail.com
+#               password: secretkey
+#         required: true
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#         '404':
+#           description: Invalid Credentials
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       security: []
+#   /developer/register/admin:
+#     post:
+#       tags:
+#       - Auth Admin
+#       summary: Register Admin User
+#       description: Register's admin user.
+#       operationId: RegisterAdminUser
+#       parameters: []
+#       requestBody:
+#         description: To register an admin user,
+#         content:
+#           application/json:
+#             schema:
+#               allOf:
+#               - $ref: '#/components/schemas/RegisternewuserRequest'
+#               - description: To register an admin user,
+#                 example:
+#                   name: smith
+#                   password: secret
+#                   email: smith1@gmail.com
+#                   role: ''
+#             example:
+#               name: smith
+#               password: secret
+#               email: smith1@gmail.com
+#               role: ''
+#         required: true
+#       responses:
+#         '200':
+#           description: ''
+#           headers: {}
+#         '404':
+#           description: Email and password are required
+#           content:
+#             application/json:
+#               schema: {}
+#       deprecated: false
+#       security: []
+# components:
+#   schemas:
+#     RegisternewuserRequest:
+#       title: RegisternewuserRequest
+#       required:
+#       - name
+#       - password
+#       - email
+#       type: object
+#       properties:
+#         name:
+#           type: string
+#           maxLength: 30
+#           pattern: ^[A-Za-z]+$
+#         password:
+#           type: string
+#           maxLength: 30
+#           pattern: ^.{6,}$
+#         email:
+#           type: string
+#           format: email
+#           pattern: ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
+#       example:
+#         name: smart
+#         password: secret
+#         email: smart7@gmail.com
+#     CreateRegionRequest:
+#       title: CreateRegionRequest
+#       required:
+#       - regionName
+#       - metadata
+#       type: object
+#       properties:
+#         regionName:
+#           type: string
+#         metadata:
+#           allOf:
+#           - $ref: '#/components/schemas/Metadata'
+#           - {}
+#       example:
+#         regionName: North-Central
+#         metadata:
+#           coordinates:
+#             latitude: 9.0354
+#             longitude: 7.4898
+#           size: 35000 square Km
+#           population: 29252408
+#     Metadata:
+#       title: Metadata
+#       required:
+#       - coordinates
+#       - size
+#       - population
+#       type: object
+#       properties:
+#         coordinates:
+#           allOf:
+#           - $ref: '#/components/schemas/Coordinates'
+#           - {}
+#         size:
+#           type: string
+#         population:
+#           type: integer
+#           format: int32
+#       example:
+#         coordinates:
+#           latitude: 9.0354
+#           longitude: 7.4898
+#         size: 35000 square Km
+#         population: 29252408
+#     Coordinates:
+#       title: Coordinates
+#       required:
+#       - latitude
+#       - longitude
+#       type: object
+#       properties:
+#         latitude:
+#           type: number
+#         longitude:
+#           type: number
+#       example:
+#         latitude: 9.0354
+#         longitude: 7.4898
+#     CreateStateRequest:
+#       title: CreateStateRequest
+#       required:
+#       - stateName
+#       - state_metadata
+#       - lgas
+#       type: object
+#       properties:
+#         stateName:
+#           type: string
+#         state_metadata:
+#           allOf:
+#           - $ref: '#/components/schemas/StateMetadata'
+#           - {}
+#         lgas:
+#           type: array
+#           items:
+#             type: string
+#           description: ''
+#       example:
+#         stateName: Sokoto State
+#         state_metadata:
+#           capital: Sokoto
+#           coordintes:
+#             latitude: 13.0611194996857
+#             longitude: 5.3152203
+#           population: 11500456
+#         lgas:
+#         - Bodinga
+#         - Dange Shuni
+#         - Gada
+#         - Goronyo
+#         - Gudu
+#         - Gwadabawa
+#         - Illela
+#         - Isa
+#         - Kebbe
+#         - Kware
+#         - Rabah
+#         - Sabon Birni
+#         - Shagari
+#         - Silame
+#         - Sokoto North
+#         - Sokoto South
+#         - Tambuwal
+#         - Tangaza
+#         - Tureta
+#         - Wamako
+#         - Wurno
+#         - Yabo
+#     StateMetadata:
+#       title: StateMetadata
+#       required:
+#       - capital
+#       - coordintes
+#       - population
+#       type: object
+#       properties:
+#         capital:
+#           type: string
+#         coordintes:
+#           allOf:
+#           - $ref: '#/components/schemas/Coordintes'
+#           - {}
+#         population:
+#           type: integer
+#           format: int32
+#       example:
+#         capital: Sokoto
+#         coordintes:
+#           latitude: 13.0611194996857
+#           longitude: 5.3152203
+#         population: 11500456
+#     Coordintes:
+#       title: Coordintes
+#       required:
+#       - latitude
+#       - longitude
+#       type: object
+#       properties:
+#         latitude:
+#           type: number
+#         longitude:
+#           type: number
+#       example:
+#         latitude: 13.0611194996857
+#         longitude: 5.3152203
+#     AdminLoginRequest:
+#       title: AdminLoginRequest
+#       required:
+#       - email
+#       - password
+#       type: object
+#       properties:
+#         email:
+#           type: string
+#         password:
+#           type: string
+#       example:
+#         email: miles@gmail.com
+#         password: secretkey
+#   securitySchemes:
+#     apiAccessKey:
+#       type: apiKey
+#       name: x-api-key
+#       in: header
+#     adminAuth:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT
+#       description: Enter JWT token
+# security:
+# - apiAccessKey: []
+# - adminAuth: []
+# tags:
+# - name: Misc
+#   description: ''
+# - name: Auth User
+#   description: ''
+# - name: States
+#   description: ''
+# - name: Admin write access
+#   description: ''
+# - name: Regions
+#   description: ''
+# - name: Auth Admin
+#   description: ''
